@@ -1,15 +1,19 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <wchar.h>
+#include <locale.h>
 int main(void)
 {
-    int ch; int count = 0;
-    printf("Введите текст (# для завершения): \n");
-    while ((ch = getchar()) != '#')
+    setlocale(LC_ALL, ""); // Устанавливаем локаль для поддержки широких символов
+    wint_t ch; 
+    int count = 0;
+    wprintf(L"Введите текст (# для завершения): \n");
+    while ((ch = getwchar()) != L'#')
     {
-        printf("%c-%3d ", ch, ch);
+        wprintf(L"%lc-%3d ", ch, ch);
         count++;
         if (count % 8 == 0)
         {
-            printf("\n");
+            wprintf(L"\n");
         }
     }
     return 0;
